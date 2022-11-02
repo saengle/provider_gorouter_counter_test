@@ -1,35 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:provider_gorouter_counter/presentation/main_view_model.dart';
 
-class MainScreen extends StatefulWidget {
+class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
-  int counter = 0;
-  bool isLoading = false;
-  @override
   Widget build(BuildContext context) {
+    final mainViewModel = context.watch<MainViewModel>();
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Provider 적용한 counter"),
+      ),
       body: Center(
         child: GestureDetector(
           onTap: () async {
-            setState(() {
-              isLoading = true;
-            });
-            await Future.delayed(const Duration(seconds: 1));
-            setState(() {
-              counter++;
-              isLoading = false;
-            });
+            mainViewModel.increment();
           },
-          child: isLoading == true
+          child: mainViewModel.isLoading == true
               ? const CircularProgressIndicator()
               : Text(
                   style: const TextStyle(fontSize: 80),
-                  '$counter',
+                  '${mainViewModel.count}',
                 ),
         ),
       ),

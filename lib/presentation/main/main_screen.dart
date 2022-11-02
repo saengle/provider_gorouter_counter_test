@@ -10,7 +10,7 @@ class MainScreen extends StatelessWidget {
     final mainViewModel = context.watch<MainViewModel>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Provider 적용한 counter"),
+        title: const Text('Provider 적용한 counter'),
       ),
       body: Center(
         child: GestureDetector(

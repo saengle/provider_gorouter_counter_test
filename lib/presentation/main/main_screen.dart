@@ -7,7 +7,7 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mainViewModel = context.watch<MainViewModel>();
+    final viewModel = context.watch<MainViewModel>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Provider 적용한 counter'),
@@ -15,13 +15,13 @@ class MainScreen extends StatelessWidget {
       body: Center(
         child: GestureDetector(
           onTap: () async {
-            mainViewModel.increment();
+            viewModel.increment();
           },
-          child: mainViewModel.isLoading == true
+          child: viewModel.isLoading
               ? const CircularProgressIndicator()
               : Text(
                   style: const TextStyle(fontSize: 80),
-                  '${mainViewModel.count}',
+                  '${viewModel.count}',
                 ),
         ),
       ),

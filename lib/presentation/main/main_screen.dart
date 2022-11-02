@@ -9,21 +9,28 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int counter = 0;
-
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: GestureDetector(
-          onTap: () {
+          onTap: () async {
+            setState(() {
+              isLoading = true;
+            });
+            await Future.delayed(const Duration(seconds: 1));
             setState(() {
               counter++;
+              isLoading = false;
             });
           },
-          child: Text(
-            style: const TextStyle(fontSize: 80),
-            '$counter',
-          ),
+          child: isLoading == true
+              ? const CircularProgressIndicator()
+              : Text(
+                  style: const TextStyle(fontSize: 80),
+                  '$counter',
+                ),
         ),
       ),
     );

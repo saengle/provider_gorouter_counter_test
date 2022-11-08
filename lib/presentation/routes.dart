@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_gorouter_counter/presentation/auth_gate/auth_gate.dart';
-import 'package:provider_gorouter_counter/presentation/main/main_screen.dart';
 import 'package:provider_gorouter_counter/presentation/main_view_model.dart';
 
 final GoRouter router = GoRouter(

@@ -38,6 +38,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   provider: ^6.0.4
   go_router: ^5.1.1
+  flutterfire_ui: ^0.4.3+19
+  firebase_auth: ^4.1.1
 
 dev_dependencies:
   flutter_test:

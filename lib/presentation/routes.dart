@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:provider_gorouter_counter/presentation/auth_gate/auth_gate.dart';
 import 'package:provider_gorouter_counter/presentation/main_view_model.dart';
 import 'package:provider_gorouter_counter/presentation/write/write_screen.dart';
+import 'package:provider_gorouter_counter/presentation/write/write_view_model.dart';
 
 abstract class Routes {
   static const String homeRoute = '/';
@@ -25,7 +26,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: Routes.writeRoute,
       builder: (BuildContext context, GoRouterState state) {
-        return WriteScreen();
+        return ChangeNotifierProvider(
+          create: (_) => WriteViewModel(),
+          child: const WriteScreen(),
+        );
       },
     ),
   ],

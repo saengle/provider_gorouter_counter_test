@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:provider_gorouter_counter/presentation/write/write_view_model.dart';
+import 'package:provider_gorouter_counter/presentation/memo_write/memo_write_view_model.dart';
 
-class WriteScreen extends StatefulWidget {
-  const WriteScreen({Key? key}) : super(key: key);
+class MemoWriteScreen extends StatefulWidget {
+  const MemoWriteScreen({Key? key}) : super(key: key);
 
   @override
-  State<WriteScreen> createState() => _WriteScreenState();
+  State<MemoWriteScreen> createState() => _MemoWriteScreenState();
 }
 
-class _WriteScreenState extends State<WriteScreen> {
+class _MemoWriteScreenState extends State<MemoWriteScreen> {
   final _titleTextController = TextEditingController();
   final _bodyTextController = TextEditingController();
 
@@ -20,22 +20,19 @@ class _WriteScreenState extends State<WriteScreen> {
     super.dispose();
   }
 
-  final _snackBar = SnackBar(
-    content: const Text('제목과 내용을 입력하세요.'),
-    action: SnackBarAction(
-      label: '확인',
-      onPressed: () {
-        // Some code to undo the change.
-      },
-    ),
-  );
-
-// Find the ScaffoldMessenger in the widget tree
-// and use it to show a SnackBar.
+  // final _snackBar = SnackBar(
+  //   content: const Text('제목과 내용을 입력하세요.'),
+  //   action: SnackBarAction(
+  //     label: '확인',
+  //     onPressed: () {
+  //       // Some code to undo the change.
+  //     },
+  //   ),
+  // );
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<WriteViewModel>();
+    final viewModel = context.watch<MemoWriteViewModel>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('메모장'),
@@ -68,11 +65,9 @@ class _WriteScreenState extends State<WriteScreen> {
           ElevatedButton(
               onPressed: viewModel.isValid(
                       _titleTextController.text, _bodyTextController.text)
-                  ? () {
-                      ScaffoldMessenger.of(context).showSnackBar(_snackBar);
-                    }
+                  ? null
                   : () {
-                      viewModel.write(
+                      viewModel.writeNote(
                           _titleTextController.text, _bodyTextController.text);
                       Navigator.pop(context);
                     },
